@@ -30,6 +30,11 @@ object Decoder {
     Try(any.asInstanceOf[Int]).toEither // scalastyle:ignore token
   }
 
+  implicit val longDecoder: Decoder[Long] = instance { any =>
+    // Don't try to catch an UndefinedBehaviorError
+    Try(any.asInstanceOf[Int]).toEither.map(i=> i.toLong) // scalastyle:ignore token
+  }
+
   implicit val stringDecoder: Decoder[String] = instance { any =>
     // Don't try to catch an UndefinedBehaviorError
     Try(any.asInstanceOf[String]).toEither // scalastyle:ignore token

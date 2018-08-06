@@ -13,6 +13,7 @@ object Encoder {
   def instance[A](encode: A => js.Any): Encoder[A] = a => encode(a)
 
   implicit val intEncoder: Encoder[Int] = instance(identity[Int])
+  implicit val longEncoder: Encoder[Long] = instance(identity[Long])
   implicit val stringEncoder: Encoder[String] = instance(identity[String])
   implicit val booleanEncoder: Encoder[Boolean] = instance(identity[Boolean])
 
