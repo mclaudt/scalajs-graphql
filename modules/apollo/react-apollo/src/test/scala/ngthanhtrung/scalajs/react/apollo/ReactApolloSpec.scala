@@ -2,7 +2,11 @@ package ngthanhtrung.scalajs.react.apollo
 
 import scala.scalajs.js
 
-import japgolly.scalajs.react.raw.{React, ReactClassUntyped, ReactDOMServer}
+// При переводе на версию 1.2.3 с 1.1.1 перестала видеть ReactClassUntyped
+// Из диффа следует, что он просто переименовался
+// ReactClassUntyped => React.ComponentClassUntyped
+
+import japgolly.scalajs.react.raw.{  React, ReactDOMServer}
 import org.scalatest.{BeforeAndAfterAll, FlatSpec}
 
 import ngthanhtrung.scalajs.apollo.cache.internal.{ApolloInMemoryCache, ApolloInMemoryCacheOptions}
@@ -94,7 +98,7 @@ final class ReactApolloSpec extends FlatSpec with BeforeAndAfterAll {
   )
 
   private[this] val root = React.createElement(
-    internal.ApolloProvider.asInstanceOf[ReactClassUntyped], // scalastyle:ignore token
+    internal.ApolloProvider.asInstanceOf[React.ComponentClassUntyped], // scalastyle:ignore token
     new internal.ApolloProviderProps(client),
     graphqlComponent(GetUserQuery.Variables(10)).raw // scalastyle:ignore magic.number
   )
