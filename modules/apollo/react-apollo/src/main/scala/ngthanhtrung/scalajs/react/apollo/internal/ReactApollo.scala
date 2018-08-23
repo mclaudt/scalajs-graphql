@@ -15,11 +15,6 @@ object ReactApollo extends js.Object {
     query: Query[Variables, Data]
   ): HigherOrderComponent[Variables, ApolloQueryProps[Data]] = js.native
 
-  // При переходе на 1.2.3 с 1.1.1 перестала видеть  ReactElement и Undefined
-  // Судя по дифу в репе japgolly, там тоже простой ренейминг
-  // ReactElement -> React.Element
-  // А Undefined заменили на Void (который на самом деле Unit)
-
   def getDataFromTree(component: React.Element): js.Promise[Void] = js.native
   def renderToStringWithData(component: React.Element): js.Promise[String] = js.native
 }
